@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<html>
+    <body>
+    <h1>{{dc}}</h1>
+    <ul>
+    {% for benchmark in benchmarks %}
+        <li><a href="{{ benchmark }}">{{benchmark}}</a></li>
+    {% endfor %}
+    </body>
+</html>
