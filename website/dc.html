@@ -2,10 +2,10 @@
 
 <html>
     <body>
-    <h1>{{dc}}</h1>
+    <h1>{{datacenter}}</h1>
     <ul>
     {% for benchmark in benchmarks %}
-        <li><a href="{{ benchmark }}">{{benchmark}}</a></li>
+        <li><a href="{{datacenter}}/{{benchmark}}">{{benchmark[:-5]}}</a></li>
     {% endfor %}
     </body>
 </html>
