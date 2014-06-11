@@ -40,12 +40,12 @@ Author : Rodolphe Quiédeville <rodolphe@quiedeville.org>
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="#">[% title %] [% version %]</a>
+          <a class="navbar-brand" href="#">Cloud Queues </a>
         </div>
         <div class="navbar-collapse collapse">
 
           <p class="navbar-text pull-right">
-            generated : [% date.format %]
+            Generated : [% date.format %]
           </p>
 
           <ul class="nav navbar-nav">

@@ -2,10 +2,7 @@
 <hr />
 
 <footer>
-  <address>
-    <a href="http://tsung.erlang-projects.org">http://tsung.erlang-projects.org/</a>
-    Contact:   <a href="mailto:[% contact %]">[% contact %]</a>
-  </address>
+    <a href="http://www.rackspace.com/cloud/queues/">Cloud Queues</a> a product of <a href="http://www.rackspace.com">Rackspace</a>, the OpenCloud company.
 </footer>
 
 </div><!--/.fluid-container-->
