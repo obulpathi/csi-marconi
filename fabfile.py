@@ -57,9 +57,12 @@ def benchmark():
     local("cd " + local_benchmarks_dir + " && perl ~/csi-marconi/tsung_stats_ng.pl -t ~/csi-marconi/templates")
     local("mkdir -p " + webpages_dir)
     # copy the reports to website directory: /usr/sahre/nginx/html
-    local("cp "    + local_benchmarks_dir + "/report.html  " + webpages_dir)
-    local("cp "    + local_benchmarks_dir + "/graph.html   " + webpages_dir)
-    local("cp -R " + local_benchmarks_dir + "/images       " + webpages_dir)
+    local("cp "    + local_benchmarks_dir + "/report.html    " + webpages_dir)
+    local("cp "    + local_benchmarks_dir + "/graph.html     " + webpages_dir)
+    local("cp -R " + local_benchmarks_dir + "/images         " + webpages_dir)
+    local("cp "    + local_benchmarks_dir + "/urlerrors.html " + webpages_dir)
+    local("cp "    + local_benchmarks_dir + "/tsung.xml      " + webpages_dir)
+    local("cp "    + local_benchmarks_dir + "/data           " + webpages_dir)
     local("cd    " + webpages_dir         + " && ln -s ../../static ./static")
 
 # update webpages
