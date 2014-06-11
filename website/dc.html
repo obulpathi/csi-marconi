@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="http://benchmarks.cldqs.com">Cloud Queues</a>
+          <a class="navbar-brand" href="http://benchmarks.cldqs.com">Cloud Queues</a>  <a class="navbar-brand" href="http://benchmarks.cldqs.com/{{dc}}.html">{{datacenter}}</a>    
         </div>
         <div class="navbar-collapse collapse">
 
@@ -50,10 +50,9 @@
     
   <div id="stats">
 
-  <h4>{{datacenter}}</h4>
     <ul>
     {% for benchmark in benchmarks %}
-        <h6><a href="{{datacenter}}/{{benchmark}}/report.html">{{benchmark}}</a></h6>
+        <h4><a href="{{dc}}/{{benchmark}}/report.html">{{benchmark}}</a></h4>
     {% endfor %}
   </div>
     </body>
