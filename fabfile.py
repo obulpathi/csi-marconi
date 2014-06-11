@@ -75,6 +75,7 @@ def update_website():
     for dc in datacenters.iterkeys():
         benchmarks = os.listdir(website_path + dc)
         latest_benchmarks = sorted(benchmarks)[:10]
+        print(latest_benchmarks)
         rendered_template = template.render(dc = dc, datacenter = datacenters[dc], benchmarks = benchmarks)
         dc_html = website_path + dc + ".html"
         with open(dc_html, "w") as fh:
@@ -82,4 +83,4 @@ def update_website():
         # remove the outdates logs
         outdated_benchmarks = benchmarks[10:]
         for benchmark in outdated_benchmarks:
-            os.remove(website_path + dc + "/" + benchmark)
+            local("rm -rf " + website_path + dc + "/" + benchmark)
