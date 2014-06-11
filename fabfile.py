@@ -69,17 +69,17 @@ def benchmark():
 # update webpages
 def update_website():
     website_path = "/usr/share/nginx/html/"
-    datacenters = ['hkg']
+    datacenters = {'hkg': 'Hong Kong'}
     jenv = Environment(loader=FileSystemLoader('website/'))
     template = jenv.get_template('dc.html')
-    for datacenter in datacenters:
-        benchmarks = os.listdir(website_path + datacenter)
+    for dc in datacenters.iterkeys():
+        benchmarks = os.listdir(website_path + dc)
         latest_benchmarks = sorted(benchmarks)[:10]
-        rendered_template = template.render(datacenter = datacenter, benchmarks = benchmarks)
-        dc_html = website_path + datacenter + ".html"
+        rendered_template = template.render(dc = dc, datacenter = datacenters[dc], benchmarks = benchmarks)
+        dc_html = website_path + dc + ".html"
         with open(dc_html, "w") as fh:
             fh.write(rendered_template)
         # remove the outdates logs
         outdated_benchmarks = benchmarks[10:]
         for benchmark in outdated_benchmarks:
-            os.remove(website_path + datacenter + "/" + benchmark)
+            os.remove(website_path + dc + "/" + benchmark)

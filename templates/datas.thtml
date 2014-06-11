@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-sm-3">
 	<div id="stats">
-	  <h3>Tsung Datas</h3>
+	  <h3>Tsung Data</h3>
 	  <table class="table table-striped	">
 	    [% FOREACH key = datafiles.tsung.keys.sort %]
 	    <tr>
