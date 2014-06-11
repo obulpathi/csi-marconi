@@ -63,7 +63,7 @@ Author : Rodolphe Quiédeville <rodolphe@quiedeville.org>
 	            <li><a href="[% conf %]">XML Config file</a></li>
               </ul>
             </li>
-            <li><a href="about.html">About</a></li>
+            <!-- <li><a href="about.html">About</a></li> -->
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -61,8 +61,9 @@ def benchmark():
     local("cp "    + local_benchmarks_dir + "/graph.html     " + webpages_dir)
     local("cp -R " + local_benchmarks_dir + "/images         " + webpages_dir)
     local("cp "    + local_benchmarks_dir + "/urlerrors.html " + webpages_dir)
+    local("cp -R " + local_benchmarks_dir + "/datas.html     " + webpages_dir)
+    local("cp -R " + local_benchmarks_dir + "/data           " + webpages_dir)
     local("cp "    + local_benchmarks_dir + "/tsung.xml      " + webpages_dir)
-    local("cp "    + local_benchmarks_dir + "/data           " + webpages_dir)
     local("cd    " + webpages_dir         + " && ln -s ../../static ./static")
 
 # update webpages
