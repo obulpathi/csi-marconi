@@ -44,13 +44,23 @@ def benchmark():
     # get the benchmarks directory name
     output = run("ls /root/.tsung/log/")
     benchmark = output.stdout
-    print(benchmark)
-    print(region)
-    get("/root/.tsung/log/" + benchmark, "/root/logs/" + region)
-    local("mkdir -p /usr/share/nginx/html/" + region + "/" + benchmark)
-    local("cp "    + "/root/logs/" + region + "/" + benchmark + "/report.html" + "   " + "/usr/share/nginx/html/" + region + "/" + benchmark + "/report.html")
-    local("cp "    + "/root/logs/" + region + "/" + benchmark + "/graph.html"  + "   " + "/usr/share/nginx/html/" + region + "/" + benchmark + "/graph.html")
-    local("cp -R " + "/root/logs/" + region + "/" + benchmark + "/images"      + "   " + "/usr/share/nginx/html/" + region + "/" + benchmark)
+    webpages_dir = "/usr/share/nginx/html/" + region + "/" + benchmark 
+    local_benchmarks_dir  = "/root/logs/" + region + "/" + benchmark
+    remote_benchmarks_dir  = "/root/.tsung/log/" + benchmark
+    # copy benchmark logs to local logs dir
+    get(remote_benchmarks_dir, "/root/logs/" + region)
+    # copy the benchmark logs to local temporary directory
+    # local("cp -R " + "/root/logs/" + region + "/" + benchmark, "/root/logs/" + region + "/tmp")
+    # create a data directory for csv files
+    local("mkdir -p " + local_benchmarks_dir + "/csv_data") 
+    # generate reports
+    local("cd " + local_benchmarks_dir + " && perl ~/csi-marconi/tsung_stats_ng.pl -t ~/csi-marconi/templates")
+    local("mkdir -p " + webpages_dir)
+    # copy the reports to website directory: /usr/sahre/nginx/html
+    local("cp "    + local_benchmarks_dir + "/report.html  " + webpages_dir)
+    local("cp "    + local_benchmarks_dir + "/graph.html   " + webpages_dir)
+    local("cp -R " + local_benchmarks_dir + "/images       " + webpages_dir)
+    local("cd    " + webpages_dir         + " && ln -s ../../static ./static")
 
 # update webpages
 def update_website():
