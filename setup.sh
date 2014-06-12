@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+<<COMMENT
 # Create ubuntu 13.10 server
 apt-get update
 apt-get -y upgrade
@@ -26,7 +26,7 @@ chmod 755 configure
 ./configure
 make
 make install
-
+COMMENT
 # source required shell variables
 cd ~
 cp -r csi-marconi/load ~/.tsung

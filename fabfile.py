@@ -46,7 +46,7 @@ def benchmark():
     # get the benchmarks directory name
     output = run("ls /root/.tsung/log/")
     benchmark = output.stdout
-    webpages_dir = "/usr/share/nginx/html/" + region + "/" + benchmark 
+    webpages_dir = "/usr/share/nginx/html/" + region + "/" + benchmark + "/" 
     local_benchmarks_dir  = "/root/logs/" + region + "/" + benchmark
     remote_benchmarks_dir  = "/root/.tsung/log/" + benchmark
     # copy benchmark logs to local logs dir
@@ -58,6 +58,7 @@ def benchmark():
     # generate reports
     local("cd " + local_benchmarks_dir + " && perl ~/csi-marconi/tsung_stats_ng.pl -t ~/csi-marconi/templates")
     local("mkdir -p " + webpages_dir)
+    print(webpages_dir)
     # copy the reports to website directory: /usr/sahre/nginx/html
     local("cp "    + local_benchmarks_dir + "/report.html    " + webpages_dir)
     local("cp "    + local_benchmarks_dir + "/graph.html     " + webpages_dir)
@@ -87,6 +88,6 @@ def publish():
         with open(dc_html, "w") as fh:
             fh.write(rendered_template)
         # remove the outdates logs
-        outdated_benchmarks = benchmarks[:-10]
+        outdated_benchmarks = benchmarks[10:]
         for benchmark in outdated_benchmarks:
             local("rm -rf " + website_path + dc + "/" + benchmark)
