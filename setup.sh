@@ -33,7 +33,7 @@ cp -r csi-marconi/load ~/.tsung
 cp csi-marconi/pyrax.cfg ~/.pyrax.cfg
 
 # check if the variables have been set properly
-if if [[ -z "$REGION" ]] || if [[ -z "$TENANT_ID" ]] || [ "$REGION" = "reg" ] || [ "$TENANT_ID" = "tenant_id" ]
+if [[ -z "$REGION" ]] || [[ -z "$TENANT_ID" ]] || [ "$REGION" = "reg" ] || [ "$TENANT_ID" = "tenant_id" ]
 then
     echo "Please use valid TENANT_ID and REGION or update them in tsungrc"
 fi

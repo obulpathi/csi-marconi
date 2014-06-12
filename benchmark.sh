@@ -4,7 +4,7 @@
 # source ~/csi-marconi/tsungrc
 
 # check if the variables have been set properly
-if [[ -z "$TENANT_ID" ]] || if [[ -z "$AUTH_TOKEN" ]] || [[ "$TENANT_ID" = "tenant_id" ]] || [[ "$AUTH_TOKEN" = "auth_token" ]]
+if [[ -z "$TENANT_ID" ]] || [[ -z "$AUTH_TOKEN" ]] || [ "$TENANT_ID" = "tenant_id" ] || [ "$AUTH_TOKEN" = "auth_token" ]
 then
     echo "Please use valid TENANT_ID and AUTH_TOKEN or update them in tsungrc"
 fi
