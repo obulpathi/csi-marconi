@@ -7,11 +7,11 @@ from fabric.operations import get
 from fabric.api import env, run, local, parallel
 from jinja2 import Environment, FileSystemLoader
 
-"""
 env.hosts = ['root@benchmarks-dfw', 'root@benchmarks-ord', 'root@benchmarks-iad',
              'root@benchmarks-lon', 'root@benchmarks-hkg', 'root@benchmarks-syd']
 """
 env.hosts = ['root@benchmarks-hkg']
+"""
 
 @parallel
 def sample():

@@ -52,3 +52,4 @@ sed -i "s/REGION/${REGION}/g" ~/.pyrax.cfg
 # Increase file descriptors available.
 echo root soft  nofile 9000  >> /etc/security/limits.conf
 echo root hard  nofile 65000 >> /etc/security/limits.conf
+
