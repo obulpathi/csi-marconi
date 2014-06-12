@@ -28,7 +28,7 @@ def setup():
     run("apt-get update")
     run("apt-get upgrade -y")
     run("apt-get install -y git")
-    run("git clone https://github.com/rackerlabs/csi-marconi.git csi-marconi")
+    run("git clone https://github.com/obulpathi/csi-marconi.git csi-marconi")
     run("REGION=%s TENANT_ID=%s bash /root/csi-marconi/setup.sh" %
         (region, tenant_id))
 
