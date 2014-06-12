@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # update auth token 
-source ~/csi-marconi/tsungrc
+# source ~/csi-marconi/tsungrc
 
 # check if the variables have been set properly
 if if [[ -z "$TENANT_ID" ]] || if [[ -z "$AUTH_TOKEN" ]] || [ "$TENANT_ID" = "tenant_id" ] || [ "$AUTH_TOKEN" = "auth_token" ]
