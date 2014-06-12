@@ -33,7 +33,8 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="http://benchmarks.cldqs.com">Cloud Queues -</a><a class="navbar-brand" href="http://benchmarks.cldqs.com/{{dc}}.html">{{datacenter}}</a>    
+          <a class="navbar-brand" href="http://benchmarks.cldqs.com">Cloud Queues</a>
+          <!--<a class="navbar-brand" href="http://benchmarks.cldqs.com/{{dc}}.html">{{datacenter}}</a> --> 
         </div>
         <div class="navbar-collapse collapse">
 
@@ -52,8 +53,8 @@
 
     <h4>Benchmarks</h4>
     <ul>
-    {% for benchmark in benchmarks %}
-        <h5><a href="{{dc}}/{{benchmark}}/report.html">{{benchmark}}</a></h5>
+    {% for benchmark in benchmarks.iterkeys() %}
+        <h5><a href="{{dc}}/{{benchmark}}/report.html">{{benchmarks[benchmark]}}</a></h5>
     {% endfor %}
   </div>
     </body>

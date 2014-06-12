@@ -1,5 +1,7 @@
 import os
 import getpass
+import datetime
+from collections import OrderedDict
 
 from fabric.operations import get
 from fabric.api import env, run, local, parallel
@@ -69,18 +71,23 @@ def benchmark():
 # update webpages
 def update_website():
     website_path = "/usr/share/nginx/html/"
-    datacenters = {'hkg': 'Hong Kong'}
+    dc_map = {'hkg': 'Hong Kong'}
     jenv = Environment(loader=FileSystemLoader('website/'))
     template = jenv.get_template('dc.html')
-    for dc in datacenters.iterkeys():
+    for dc in dc_map.iterkeys():
         benchmarks = os.listdir(website_path + dc)
-        latest_benchmarks = sorted(benchmarks)[:10]
-        print(latest_benchmarks)
-        rendered_template = template.render(dc = dc, datacenter = datacenters[dc], benchmarks = benchmarks)
+        benchmarks.reverse()
+        latest_benchmarks = {}
+        for benchmark in benchmarks[:10]:
+            time = datetime.datetime(int(benchmark[0:4]), int(benchmark[4:6]), int(benchmark[6:8]),
+                                     int(benchmark[9:11]), int(benchmark[11:13]))
+            latest_benchmarks[benchmark] = time.strftime("%A, %B %d, %Y, %I:%M %p")
+        sorted_benchmarks = OrderedDict(sorted(latest_benchmarks.items(), reverse = True))
+        rendered_template = template.render(dc = dc, datacenter = dc_map[dc], benchmarks = sorted_benchmarks)
         dc_html = website_path + dc + ".html"
         with open(dc_html, "w") as fh:
             fh.write(rendered_template)
         # remove the outdates logs
-        outdated_benchmarks = benchmarks[10:]
+        outdated_benchmarks = benchmarks[:-10]
         for benchmark in outdated_benchmarks:
             local("rm -rf " + website_path + dc + "/" + benchmark)
