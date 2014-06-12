@@ -28,3 +28,5 @@ tsung start
 # You can run a simple web server to view reports, with 'python -m SimpleHTTPServer'
 # Enjoy your performance reports!!
 
+# to avoid unexpected end of line error
+echo 'hi'
