@@ -4,7 +4,7 @@ import datetime
 from collections import OrderedDict
 
 from fabric.operations import get
-from fabric.api import env, run, local, parallel
+from fabric.api import cd, env, run, local, parallel
 from jinja2 import Environment, FileSystemLoader
 
 env.hosts = ['root@benchmarks-dfw', 'root@benchmarks-ord', 'root@benchmarks-iad',
@@ -12,12 +12,6 @@ env.hosts = ['root@benchmarks-dfw', 'root@benchmarks-ord', 'root@benchmarks-iad'
 """
 env.hosts = ['root@benchmarks-hkg']
 """
-
-@parallel
-def sample():
-    with open(os.path.expanduser("~/.credentials.conf")) as fh:
-        credentials = fh.readline().strip()
-    tenant_id, auth_token = credentials.split(";")
 
 @parallel
 def setup():
@@ -32,7 +26,13 @@ def setup():
     run("REGION=%s TENANT_ID=%s bash /root/csi-marconi/setup.sh" %
         (region, tenant_id))
 
-
+@parallel
+def update():
+    run("apt-get update")
+    run("apt-get upgrade -y")
+    with cd("/root/csi-marconi"):
+        run("git pull")
+    
 @parallel
 def benchmark():
     with open(os.path.expanduser("~/.credentials.conf")) as fh:
@@ -68,8 +68,7 @@ def benchmark():
     local("cp "    + local_benchmarks_dir + "/tsung.xml      " + webpages_dir)
     local("cd    " + webpages_dir         + " && ln -s ../../static ./static")
 
-# update webpages
-def update_website():
+def publish():
     website_path = "/usr/share/nginx/html/"
     dc_map = {'hkg': 'Hong Kong'}
     jenv = Environment(loader=FileSystemLoader('website/'))

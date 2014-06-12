@@ -27,3 +27,4 @@ tsung start
 # /usr/local/lib/tsung/bin/tsung_stats.pl
 # You can run a simple web server to view reports, with 'python -m SimpleHTTPServer'
 # Enjoy your performance reports!!
+
