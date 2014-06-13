@@ -7,11 +7,11 @@ from fabric.operations import get
 from fabric.api import cd, env, run, local, parallel
 from jinja2 import Environment, FileSystemLoader
 
-"""
 env.hosts = ['root@benchmarks-dfw', 'root@benchmarks-ord', 'root@benchmarks-iad',
              'root@benchmarks-lon', 'root@benchmarks-hkg', 'root@benchmarks-syd']
 """
 env.hosts = ['root@benchmarks-hkg']
+"""
 
 @parallel
 def setup():
@@ -58,7 +58,6 @@ def benchmark():
     # generate reports
     local("cd " + local_benchmarks_dir + " && perl ~/csi-marconi/tsung_stats_ng.pl -t ~/csi-marconi/templates")
     local("mkdir -p " + webpages_dir)
-    print(webpages_dir)
     # copy the reports to website directory: /usr/sahre/nginx/html
     local("cp "    + local_benchmarks_dir + "/report.html    " + webpages_dir)
     local("cp "    + local_benchmarks_dir + "/graph.html     " + webpages_dir)
@@ -76,6 +75,7 @@ def publish():
     template = jenv.get_template('dc.html')
     for dc in dc_map.iterkeys():
         benchmarks = os.listdir(website_path + dc)
+        benchmarks.sort()
         benchmarks.reverse()
         latest_benchmarks = {}
         for benchmark in benchmarks[:10]:

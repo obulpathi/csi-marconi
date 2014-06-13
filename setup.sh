@@ -27,6 +27,7 @@ chmod 755 configure
 make
 make install
 COMMENT
+
 # source required shell variables
 cd ~
 cp -r csi-marconi/load ~/.tsung
