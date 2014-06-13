@@ -45,7 +45,7 @@ Author : Rodolphe Quiédeville <rodolphe@quiedeville.org>
         <div class="navbar-collapse collapse">
 
           <p class="navbar-text pull-right">
-            Generated : [% date.format %]
+            Generated : [% date.format %] UTC
           </p>
 
           <ul class="nav navbar-nav">
@@ -54,7 +54,7 @@ Author : Rodolphe Quiédeville <rodolphe@quiedeville.org>
 	        [% IF os_mon %]
             <li><a href="monitoring.html">Monitoring</a></li>
 	        [% END %]
-            <li><a href="urlerrors.html">UrlErros</a></li>
+            <li><a href="urlerrors.html">Erros</a></li>
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>

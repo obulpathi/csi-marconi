@@ -9,9 +9,6 @@ from jinja2 import Environment, FileSystemLoader
 
 env.hosts = ['root@benchmarks-dfw', 'root@benchmarks-ord', 'root@benchmarks-iad',
              'root@benchmarks-lon', 'root@benchmarks-hkg', 'root@benchmarks-syd']
-"""
-env.hosts = ['root@benchmarks-hkg']
-"""
 
 @parallel
 def setup():
@@ -28,8 +25,8 @@ def setup():
 
 @parallel
 def update():
-    #run("apt-get update")
-    #run("apt-get upgrade -y")
+    run("apt-get update")
+    run("apt-get upgrade -y")
     with cd("/root/csi-marconi"):
         run("git pull")
     
@@ -70,7 +67,8 @@ def benchmark():
 
 def publish():
     website_path = "/usr/share/nginx/html/"
-    dc_map = {'hkg': 'Hong Kong'}
+    dc_map = {'hkg': 'Hong Kong', 'syd': 'Sydney', 'lon': 'London',
+              'dfw': 'Dallas', 'iad': 'Northern Virginia', 'ord': 'Chicago'}
     jenv = Environment(loader=FileSystemLoader('website/'))
     template = jenv.get_template('dc.html')
     for dc in dc_map.iterkeys():

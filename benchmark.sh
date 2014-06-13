@@ -13,7 +13,7 @@ fi
 sed -i "s/.*;/${AUTH_TOKEN};/g" ~/.tsung/auth.csv
 
 # Create queues with the names in ~/.tsung/existingqueue.csv, if your account doesn't have them already.
-# python ~/csi-marconi/create_queues.py ${TENANT_ID} ${AUTH_TOKEN}
+python ~/csi-marconi/create_queues.py ${TENANT_ID} ${AUTH_TOKEN}
 
 # remove previous generated tsung log fies
 rm -rf /root/.tsung/log/*
